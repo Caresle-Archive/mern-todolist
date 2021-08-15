@@ -1,0 +1,29 @@
+:root {
+	--primary: #66DE93;
+	--danger: #D83A56;
+	--dark: #111;
+	--white: #fff;
+}
+
+* {
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	background: var(--primary);
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.text--white {
+	color: var(--white);
+}

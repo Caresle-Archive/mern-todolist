@@ -1,0 +1,21 @@
+.todo {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.btn {
+	padding: 8px;
+}
+
+.btn-todo {
+	width: 48px;
+	height: 48px;
+}
+
+.btn-danger {
+	background-color: var(--danger);
+	border: 1px solid var(--danger);
+	border-radius: 4px;
+	color: var(--white);
+}
