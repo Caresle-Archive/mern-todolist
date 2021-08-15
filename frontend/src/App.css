@@ -2,6 +2,7 @@
 	--primary: #66DE93;
 	--danger: #D83A56;
 	--dark: #111;
+	--gray: #ddd;
 	--white: #fff;
 }
 
@@ -11,10 +12,14 @@
 }
 
 html, body {
+	height: 100vh;
 	margin: 0px;
 	padding: 0px;
 	font-size: 16px;
 	background: var(--primary);
+	background: linear-gradient(180deg, rgba(102,222,147,1) 0%, rgba(60,181,106,1) 100%); 
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .App {

@@ -6,6 +6,7 @@ const TodoList = () => {
     <div className="card">
       <Todo />
       <Todo />
+      <button className="btn btn-danger">Clear</button>
     </div>
   )
 }

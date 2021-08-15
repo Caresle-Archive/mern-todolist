@@ -1,0 +1,25 @@
+.btn-no-outline {
+	background: inherit;
+	border: none;
+	color: var(--primary);
+	text-transform: uppercase;
+	font-size: 1.5rem;
+}
+
+.form {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.input-no-border {
+	border: none;
+	width: 375px;
+	background: inherit;
+}
+
+.input-no-border:focus {
+	border: 0px;
+	outline: none;
+	border-bottom: 1px solid var(--primary);
+}

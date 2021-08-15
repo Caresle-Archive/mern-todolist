@@ -1,11 +1,40 @@
 .todo {
+	--todo-height: 64px;
+	height: var(--todo-height);
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+	position: relative;
+}
+
+input[type=checkbox]:hover {
+	cursor: pointer;
+}
+
+.completed-todo {
+	opacity: .5;
+}
+
+.completed {
+	height: 2px;
+	width: 512px;
+	background: var(--gray);
+	position: absolute;
+	top: clac(var(--todo-height) * .5);
 }
 
 .btn {
 	padding: 8px;
+	margin: auto 1rem;
+}
+
+.btn-container {
+	display: flex;
+	justify-self: flex-end;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
 
 .btn-todo {
@@ -14,8 +43,8 @@
 }
 
 .btn-danger {
-	background-color: var(--danger);
-	border: 1px solid var(--danger);
-	border-radius: 4px;
-	color: var(--white);
+	border: none;
+	background-color: var(--white);
+	color: var(--danger);
+	float: right;
 }
