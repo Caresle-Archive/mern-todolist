@@ -1,10 +1,6 @@
 import './TodoForm.css'
-const TodoForm = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const todo = document.getElementById('todo-name').value
-    console.log(todo)
-  }
+
+const TodoForm = ({ handleSubmit }) => {
 
   return (
     <form className="card form" onSubmit={handleSubmit}>

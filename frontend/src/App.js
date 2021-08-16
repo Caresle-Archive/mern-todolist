@@ -27,11 +27,24 @@ const App = () => {
     setTodos(newTodos)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const todo = document.getElementById('todo-name').value
+    const ids = todos.map(t => t.id)
+    const maxId = Math.max(...ids)
+    const newTodo = {
+      id: maxId + 1,
+      name: todo,
+      completed: false
+    }
+    setTodos([...todos, newTodo])
+  }
+
   return (
     <div className="App">
       <h1 className="text--white">To-do list</h1>
-      <TodoForm />
-      <TodoList todos={todos} change={handleChangeTodo}/>
+      <TodoForm handleSubmit={handleSubmit} />
+      <TodoList todos={todos}  change={handleChangeTodo}/>
     </div>
   )
 }
