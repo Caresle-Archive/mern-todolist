@@ -40,11 +40,16 @@ const App = () => {
     setTodos([...todos, newTodo])
   }
 
+  const handleClear = (e) => {
+    const todosUnCompleted = todos.filter(t => t.completed !== true)
+    setTodos([...todosUnCompleted])
+  }
+
   return (
     <div className="App">
       <h1 className="text--white">To-do list</h1>
       <TodoForm handleSubmit={handleSubmit} />
-      <TodoList todos={todos}  change={handleChangeTodo}/>
+      <TodoList todos={todos} handleClear={handleClear} change={handleChangeTodo}/>
     </div>
   )
 }
