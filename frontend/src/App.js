@@ -5,6 +5,10 @@ import { useState, useEffect } from 'react'
 
 const App = () => {
   const [todos, setTodos] = useState([])
+  const [editTodo, setEditTodo] = useState({
+    edit: false,
+    id: ''
+  })
 
   useEffect(() => {
     fetch('http://localhost:3001/api/v1/')
@@ -34,16 +38,38 @@ const App = () => {
       name: todo,
       completed: false
     }
-    fetch('http://localhost:3001/api/v1/', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(newTodo)
-    }).then(response =>  response.json())
-      .then(data => setTodos([...todos, data]))
-    
+    if (editTodo.edit) {
+      fetch('http://localhost:3001/api/v1/' + editTodo.id, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newTodo)
+      }).then(response => response.json())
+        .then(data => {
+          let todoUpdate = todos.find(element => element.id === editTodo.id)
+          todoUpdate.name = data.name
+          const newTodos = todos.map(element => {
+            if (element.id === todoUpdate.id) {
+              element = todoUpdate
+            }
+            return element
+          })
+          setTodos(newTodos)
+        })
+    } else {
+      fetch('http://localhost:3001/api/v1/', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newTodo)
+      }).then(response =>  response.json())
+        .then(data => setTodos([...todos, data]))
+    }
+    setEditTodo({edit: false, id: ''})
   }
 
   const deleteTodo = async (arr) => {
@@ -64,8 +90,8 @@ const App = () => {
   const handleEditTodo = (todoId) => {
     const inputTodo = document.getElementById('todo-name')
     const todo = todos.filter(todo => todo.id === todoId)
-    console.log(todo)
     inputTodo.value = todo[0].name
+    setEditTodo({edit: true, id: todoId})
   }
 
   return (
