@@ -30,13 +30,18 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const todo = document.getElementById('todo-name').value
-    const ids = todos.map(t => t.id)
-    const maxId = Math.max(...ids)
     const newTodo = {
-      id: maxId + 1,
       name: todo,
       completed: false
     }
+    fetch('http://localhost:3001/api/v1/', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(newTodo)
+    })
     setTodos([...todos, newTodo])
   }
 
@@ -48,8 +53,6 @@ const App = () => {
       fetch('http://localhost:3001/api/v1/' + element.id, {
         method: 'DELETE'
       })
-      .then(res => res.text())
-      .then(res =>  console.log(res))
     })
   }
 
