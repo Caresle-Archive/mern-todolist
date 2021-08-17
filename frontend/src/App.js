@@ -41,19 +41,24 @@ const App = () => {
         'Content-type': 'application/json'
       },
       body: JSON.stringify(newTodo)
-    })
-    setTodos([...todos, newTodo])
+    }).then(response =>  response.json())
+      .then(data => setTodos([...todos, data]))
+    
+  }
+
+  const deleteTodo = async (arr) => {
+    for (const todo  of arr) {
+      await fetch('http://localhost:3001/api/v1/' + todo.id, {
+        method: 'DELETE'
+      })
+    }
   }
 
   const handleClear = (e) => {
     const todosUnCompleted = todos.filter(t => t.completed !== true)
     const todosCompleted = todos.filter(t => t.completed === true)
     setTodos([...todosUnCompleted])
-    todosCompleted.forEach(element => {
-      fetch('http://localhost:3001/api/v1/' + element.id, {
-        method: 'DELETE'
-      })
-    })
+    deleteTodo(todosCompleted)
   }
 
   const handleEditTodo = (todoId) => {
