@@ -5,12 +5,11 @@ POST http://localhost:3001/api/v1/
 Content-Type: application/json
 
 {
-	"name": "task 2",
-	"important": false
+	"name": "task 3"
 }
 
 ###
-DELETE http://localhost:3001/api/v1/61185bf6c0de2458478aac8a
+DELETE http://localhost:3001/api/v1/61185c21cc03ac587d685257
 
 ###
 PUT http://localhost:3001/api/v1/61185c21cc03ac587d685257
@@ -18,6 +17,5 @@ Content-Type: application/json
 
 {
 	"name": "task 1",
-	"important": true,
 	"completed": false
 }

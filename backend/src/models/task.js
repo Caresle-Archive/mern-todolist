@@ -3,7 +3,6 @@ const { Schema, model } = mongoose
 
 const taskSchema = new Schema({
 	name: String,
-	important: Boolean,
 	completed: Boolean
 })
 

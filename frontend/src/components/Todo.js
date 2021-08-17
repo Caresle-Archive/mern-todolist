@@ -1,7 +1,7 @@
 import './Todo.css'
 
-const Todo = ({ data, change }) => {
-  const { name, completed } = data
+const Todo = ({ data, change, handleEditTodo }) => {
+  const { id, name, completed } = data
 
   return (
     <div className="todo">
@@ -9,7 +9,7 @@ const Todo = ({ data, change }) => {
       <input type="checkbox" checked={completed} onChange={() => change(data)}></input>
       <h3>{name}</h3>
       <div className="btn-container">
-        <button className="btn btn-todo">Edit</button>
+        <button className="btn btn-todo" onClick={() => handleEditTodo(id)}>Edit</button>
       </div>
     </div>
   )

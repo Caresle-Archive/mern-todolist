@@ -11,8 +11,8 @@ export const getAllTasks = async (req, res) => {
 }
 
 export const createTask = (req, res) => {
-	const { name, important } = req.body
-	Task.create({name: name, important: important, completed: false})
+	const { name } = req.body
+	Task.create({name: name, completed: false})
 		.then(data => {
 			res.status(200)
 			res.json(data).end()
@@ -25,10 +25,9 @@ export const deleteTask = (req, res) => {
 }
 
 export const updateTask = (req, res) => {
-	const { name, important, completed } = req.body
+	const { name, completed } = req.body
 	const newTaskInfo = {
 		name: name,
-		important: important,
 		completed: completed
 	}
 	Task.findOneAndUpdate({_id: req.params.id}, newTaskInfo, {new: true})
