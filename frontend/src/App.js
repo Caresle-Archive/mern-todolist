@@ -3,6 +3,8 @@ import TodoForm from "./components/TodoForm"
 import TodoList from "./components/TodoList"
 import { useState, useEffect } from 'react'
 
+const url = 'http://localhost:3001/api/v1/'
+
 const App = () => {
   const [todos, setTodos] = useState([])
   const [editTodo, setEditTodo] = useState({
@@ -11,7 +13,7 @@ const App = () => {
   })
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/v1/')
+    fetch(url)
     .then(response =>  {
       if (response.status === 204) {
         return []
@@ -33,13 +35,14 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const todo = document.getElementById('todo-name').value
+    const input = document.getElementById('todo-name')
+    const todo = input.value
     const newTodo = {
       name: todo,
       completed: false
     }
     if (editTodo.edit) {
-      fetch('http://localhost:3001/api/v1/' + editTodo.id, {
+      fetch(url + editTodo.id, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -59,7 +62,7 @@ const App = () => {
           setTodos(newTodos)
         })
     } else {
-      fetch('http://localhost:3001/api/v1/', {
+      fetch(url, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -70,11 +73,12 @@ const App = () => {
         .then(data => setTodos([...todos, data]))
     }
     setEditTodo({edit: false, id: ''})
+    input.value = ''
   }
 
   const deleteTodo = async (arr) => {
     for (const todo  of arr) {
-      await fetch('http://localhost:3001/api/v1/' + todo.id, {
+      await fetch(url + todo.id, {
         method: 'DELETE'
       })
     }

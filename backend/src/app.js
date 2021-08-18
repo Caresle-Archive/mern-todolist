@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import configurations from './config.js'
 const app = express()
-const PORT = configurations.PORT || 5000
+const PORT = configurations.PORT || 3001
 
 import './db.js'
 import { router as apiRoutes } from './routes/api.routes.js'
